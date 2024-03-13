@@ -1,4 +1,4 @@
-# Navigation Bar Help Menu for Moodle
+# Navbar Help Menu for Moodle
 
 A plugin that adds a configurable help menu to Moodle's navigation bar.
 
