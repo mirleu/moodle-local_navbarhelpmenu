@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local plugin "Navbar Helpmenu" - Language pack
+ * Local plugin "Navbar Helpmenu" - Language pack.
  *
  * @package local_navbarhelpmenu
  * @copyright The Regents of the University of California
