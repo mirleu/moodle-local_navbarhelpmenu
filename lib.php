@@ -15,17 +15,23 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local plugin "Navbar Help Menu" - Version file.
+ * Local plugin "Navbar Help Menu" - Library.
  *
  * @package local_navbarhelpmenu
  * @copyright The Regents of the University of California
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_navbarhelpmenu';
-$plugin->version = 2024031100;
-$plugin->release = '4.1-alpha';
-$plugin->requires = 2022112800;
-$plugin->supported = [401, 401];
-$plugin->maturity = MATURITY_ALPHA;
+use local_navbarhelpmenu\output\helpmenu;
+
+/**
+ * Output callback for injecting our help menu into the nav bar.
+ *
+ * @link https://docs.moodle.org/dev/Output_callbacks#render_navbar_output
+ * @param renderer_base $renderer
+ * @return string
+ * @throws coding_exception
+ */
+function local_navbarhelpmenu_render_navbar_output(renderer_base $renderer): string {
+    return $renderer->render(new helpmenu());
+}

@@ -15,14 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local plugin "Navbar Helpmenu" - Privacy provider.
+ * Local plugin "Navbar Help Menu" - Privacy provider.
  *
  * @package local_navbarhelpmenu
  * @copyright The Regents of the University of California
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_navbarplus\privacy;
+namespace local_navbarhelpmenu\privacy;
 
 use core_privacy\local\metadata\null_provider;
 
@@ -35,7 +35,13 @@ use core_privacy\local\metadata\null_provider;
  */
 class provider implements null_provider {
 
-    public static function get_reason() : string {
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason(): string {
         return 'privacy:metadata';
     }
 }

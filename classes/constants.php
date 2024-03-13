@@ -14,18 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+namespace local_navbarhelpmenu;
+
 /**
- * Local plugin "Navbar Help Menu" - Version file.
+ * Local plugin "Navbar Help Menu" - Constants interface.
  *
  * @package local_navbarhelpmenu
  * @copyright The Regents of the University of California
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-defined('MOODLE_INTERNAL') || die();
-
-$plugin->component = 'local_navbarhelpmenu';
-$plugin->version = 2024031100;
-$plugin->release = '4.1-alpha';
-$plugin->requires = 2022112800;
-$plugin->supported = [401, 401];
-$plugin->maturity = MATURITY_ALPHA;
+interface constants {
+    /** @var int The maximum number of help menu items. */
+    const HELPMENU_ITEMS_COUNT = 10;
+}

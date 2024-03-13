@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Local plugin "Navbar Helpmenu" - Language pack.
+ * Local plugin "Navbar Help Menu" - Language pack.
  *
  * @package local_navbarhelpmenu
  * @copyright The Regents of the University of California
@@ -24,7 +24,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Navbar Helpmenu';
-$string['privacy:metadata'] = "A plugin that adds a configurable help menu to Moodle's navigation bar.";
-
-
+$string['pluginname'] = 'Navbar Help Menu';
+$string['pluginnamehelp'] = "A plugin that adds a configurable help menu to Moodle's navigation bar.";
+$string['privacy:metadata'] = 'The Navbar help menu plugin does not store any personal data.';
+$string['settingsmenuitemheading'] = 'Menu item {$a}';
+$string['settingsmenuitemlinktarget'] = 'Open link in new window';
+$string['settingsmenuitemlinktargetdesc'] = "Check to have this menu item's link open up in a new window.";
+$string['settingsmenuitemtitle'] = "Title";
+$string['settingsmenuitemtitledesc'] = "The menu item title. Must be provided if a link is given, otherwise this item will be excluded from them menu.";
+$string['settingsmenuitemurl'] = 'URL';
+$string['settingsmenuitemurldesc'] = 'The URL that this menu item links to. Leave this field empty to exclude this item from the menu.';
+$string['togglehelpmenu'] = 'Toggle help menu';
