@@ -39,8 +39,7 @@ class helpmenu implements renderable, templatable {
      * @return stdClass
      * @throws dml_exception
      */
-    public function export_for_template(renderer_base $output): stdClass
-    {
+    public function export_for_template(renderer_base $output): stdClass {
         $menu = new stdClass();
         $menu->items = [];
         $config = get_config('local_navbarhelpmenu');
