@@ -27,11 +27,18 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'Navbar Help Menu';
 $string['pluginnamehelp'] = "A plugin that adds a configurable help menu to Moodle's navigation bar.";
 $string['privacy:metadata'] = 'The Navbar help menu plugin does not store any personal data.';
-$string['settingsmenuitemheading'] = 'Menu item {$a}';
-$string['settingsmenuitemlinktarget'] = 'Open link in new window';
-$string['settingsmenuitemlinktargetdesc'] = "Check to have this menu item's link open up in a new window.";
-$string['settingsmenuitemtitle'] = "Title";
-$string['settingsmenuitemtitledesc'] = "The menu item title. Must be provided if a link is given, otherwise this item will be excluded from them menu.";
-$string['settingsmenuitemurl'] = 'URL';
-$string['settingsmenuitemurldesc'] = 'The URL that this menu item links to. Leave this field empty to exclude this item from the menu.';
+$string['settingmenuitems'] = 'Menu items';
+$string['settingmenuitemsdesc'] = 'With this setting, you can add items to help menu in the page header.<br/>
+Each line consists of a link, a title, and a new window setting (optional) - separated by pipe characters. Each menu item needs to be written in a new line.<br/><br/>
+For example:<br/>
+<pre>
+https://moodle.org|Moodle|true
+/user/contactsitesupport.php|Site Support
+</pre>
+Further information on the parameters:
+<ul>
+<li><strong>Link:</strong> The link target of the men item. It can be defined by a full web URL (e.g. https://moodle.org) or a relative path within your Moodle instance (e.g. /user/contactsitesupport.php).</li>
+<li><strong>Title:</strong> This menu item title.</li>
+<li><strong>New window (optional)</strong>: By default, the link will be opened in the same window and the value of this setting is set to false. If you want to open the link in a new window set the value to true.</li>
+</ul>';
 $string['togglehelpmenu'] = 'Toggle help menu';

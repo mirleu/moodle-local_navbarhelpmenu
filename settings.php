@@ -26,44 +26,17 @@ use local_navbarhelpmenu\constants;
 
 defined('MOODLE_INTERNAL') || die();
 
-
 if ($hassiteconfig) {
     // New settings page.
     $page = new admin_settingpage('local_navbarhelpmenu',
         get_string('pluginname', 'local_navbarhelpmenu', null, true));
 
     if ($ADMIN->fulltree) {
-        for ($i = 0; $i < constants::HELPMENU_ITEMS_COUNT; $i++) {
-            $setting = new admin_setting_heading(
-                'local_navbarhelpmenu/menuitemheading' . $i,
-                get_string('settingsmenuitemheading', 'local_navbarhelpmenu', $i + 1),
-                ''
-            );
-            $page->add($setting);
-
-            $setting = new admin_setting_configtext(
-                'local_navbarhelpmenu/menuitemurl' . $i,
-                get_string('settingsmenuitemurl', 'local_navbarhelpmenu'),
-                get_string('settingsmenuitemurldesc', 'local_navbarhelpmenu'),
-                '');
-            $page->add($setting);
-
-            $setting = new admin_setting_configtext(
-                'local_navbarhelpmenu/menuitemtitle' . $i,
-                get_string('settingsmenuitemtitle', 'local_navbarhelpmenu'),
-                get_string('settingsmenuitemtitledesc', 'local_navbarhelpmenu'),
-                ''
-            );
-            $page->add($setting);
-
-            $setting = new admin_setting_configcheckbox(
-                'local_navbarhelpmenu/menuitemlinktarget' . $i,
-                get_string('settingsmenuitemlinktarget', 'local_navbarhelpmenu'),
-                get_string('settingsmenuitemlinktargetdesc', 'local_navbarhelpmenu'),
-                '0',
-            );
-            $page->add($setting);
-        }
+        // Create insert menu items widget.
+        $setting = new admin_setting_configtextarea('local_navbarhelpmenu/menuitems',
+            get_string('settingmenuitems', 'local_navbarhelpmenu', null, true),
+            get_string('settingmenuitemsdesc', 'local_navbarhelpmenu', null, true), '', PARAM_RAW);
+        $page->add($setting);
     }
 
     // Add settings page to the appearance settings category.

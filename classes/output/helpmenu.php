@@ -39,22 +39,36 @@ class helpmenu implements renderable, templatable {
      * @return stdClass
      * @throws dml_exception
      */
-    public function export_for_template(renderer_base $output): stdClass {
+    public function export_for_template(renderer_base $output): stdClass
+    {
         $menu = new stdClass();
         $menu->items = [];
+        $config = get_config('local_navbarhelpmenu');
 
-        for ($i = 0; $i < constants::HELPMENU_ITEMS_COUNT; $i++) {
-            $url = trim(get_config('local_navbarhelpmenu', 'menuitemurl' . $i));
-            $title = trim(get_config('local_navbarhelpmenu', 'menuitemtitle' . $i));
-            $target = (bool) get_config('local_navbarhelpmenu', 'menuitemlinktarget' . $i);
-            if ('' !== $url && '' !== $title) {
-                $menu->items[] = [
-                    'url' => $url,
-                    'title' => $title,
-                    'target' => $target ? '_blank' : '_self',
-                ];
+        if (isset($config->menuitems)) {
+            $lines = explode(PHP_EOL, $config->menuitems);
+            foreach ($lines as $line) {
+                $line = trim($line);
+                if ('' === $line) {
+                    continue;
+                }
+
+                $settings = explode('|', $line);
+                if (count($settings) >= 2 && count($settings) <= 3) {
+                    $url = trim($settings[0]);
+                    $title = trim($settings[1]);
+                    $newwindow = 3 === count($settings) && 'true' === trim($settings[2]);
+                    if ('' !== $url && '' !== $title) {
+                        $menu->items[] = [
+                            'url' => $url,
+                            'title' => $title,
+                            'target' => $newwindow ? '_blank' : '_self',
+                        ];
+                    }
+                }
             }
         }
+
         $menu->hasitems = !empty($menu->items);
         return $menu;
     }
