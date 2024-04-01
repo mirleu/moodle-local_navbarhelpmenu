@@ -102,7 +102,7 @@ class behat_local_navbarhelpmenu extends behat_base {
     /**
      * Asserts that the help menu contains a given number of items.
      *
-     * @Then /^I should see "(?P<elements_number>\d+)" help menu items?$/
+     * @Then /^I should see (\d+) help menu items?$/
      *
      * @param string $expectedcount The expected number of help menu items.
      * @throws ExpectationException
@@ -117,9 +117,12 @@ class behat_local_navbarhelpmenu extends behat_base {
         } catch (ElementNotFoundException) {
             $elements = [];
         }
-        if (count($elements) !== (int) $expectedcount) {
-            throw new ExpectationException("Found " . count($elements) .
-                " menu items in navbar helpmenu. Expected $expectedcount.", $this->getSession()->getDriver());
+        $count = count($elements);
+        if ($count !== (int) $expectedcount) {
+            throw new ExpectationException(
+                "Found $count menu items in navbar help menu. Expected $expectedcount.",
+                $this->getSession()->getDriver()
+            );
         }
     }
 
@@ -127,41 +130,87 @@ class behat_local_navbarhelpmenu extends behat_base {
      * Asserts that a help menu item in a given position has the given title and link,
      * with the link targeting this window.
      *
-     * @Then /^I should see a help menu item with title "(?P<title>[^"]*)" linking to "(?P<link>[^"]*)" in this window$/
+     * @Then /^I should see help menu item (\d+) with title "([^"]*)" linking to "([^"]*)" in this window$/
      *
-     * @param string $title The menu item's title.
-     * @param string $link The menu item's link.
+     * @param string $position The menu item position within the menu.
+     * @param string $expectedtitle The expected title of the menu item.
+     * @param string $expectedlink The expected link of the menu item.
+     * @throws ExpectationException
      */
     public function i_should_see_help_menu_item_with_title_this_window(
-        string $title,
-        string $link
+        string $position,
+        string $expectedtitle,
+        string $expectedlink
     ): void {
-        $xpath = '//div[@id="usernavigation"]';
-        $xpath .= '/div[contains(@class, "local-navbarhelpmenu")]';
-        $xpath .= '/div[contains(@class, "dropdown-menu")]';
-        $xpath .= "/a[contains(@class, 'dropdown-item') and text()='$title' and contains(@href, '$link')";
-        $xpath .= ' and contains(@target, "_self")]';
-        $this->execute("behat_general::should_exist", [$xpath, "xpath_element"]);
+        $this->assert_help_menu_item($position, $expectedtitle, $expectedlink, '_self');
     }
 
     /**
      * Asserts that a help menu item in a given position has the given title and link,
      * with the link targeting a new window.
      *
-     * @Then /^I should see a help menu item with title "(?P<title>[^"]*)" linking to "(?P<link>[^"]*)" in a new window$/
+     * @Then /I should see help menu item (\d+) with title "([^"]*)" linking to "([^"]*)" in a new window$/
      *
-     * @param string $title The menu item's title.
-     * @param string $link The menu item's link.
+     * @param string $position The menu item position within the menu.
+     * @param string $expectedtitle The expected title of the menu item.
+     * @param string $expectedlink The expected link of the menu item.
+     * @throws ExpectationException
      */
     public function i_should_see_help_menu_item_with_title_new_window(
-        string $title,
-        string $link
+        string $position,
+        string $expectedtitle,
+        string $expectedlink
     ): void {
+        $this->assert_help_menu_item($position, $expectedtitle, $expectedlink, '_blank');
+    }
+
+    /**
+     * Asserts that a help menu item in a given position has the given title, link, and link target.
+     *
+     * @Then /I should see help menu item (\d+) with title "([^"]*)" linking to "([^"]*)" in a new window$/
+     *
+     * @param string $position The menu item position within the menu.
+     * @param string $expectedtitle The expected title of the menu item.
+     * @param string $expectedlink The expected link of the menu item.
+     * @param string $expectedlinktarget The expected link target of the menu item.
+     * @throws ExpectationException
+     */
+    protected function assert_help_menu_item(
+        string $position,
+        string $expectedtitle,
+        string $expectedlink,
+        string $expectedlinktarget): void {
+
         $xpath = '//div[@id="usernavigation"]';
         $xpath .= '/div[contains(@class, "local-navbarhelpmenu")]';
         $xpath .= '/div[contains(@class, "dropdown-menu")]';
-        $xpath .= "/a[contains(@class, 'dropdown-item') and text()='$title' and contains(@href, '$link')";
-        $xpath .= ' and contains(@target, "_blank")]';
-        $this->execute("behat_general::should_exist", [$xpath, "xpath_element"]);
+        $xpath .= "/a[$position]";
+
+        $menuitem = $this->find('xpath', $xpath);
+
+        $title = trim($menuitem->getText());
+        $link = trim($menuitem->getAttribute('href'));
+        $linktarget = trim($menuitem->getAttribute('target'));
+
+        if ($title !== $expectedtitle) {
+            throw new ExpectationException(
+                "Menu item $position has title '$title'. Expected title '$expectedtitle'.",
+                $this->getSession()->getDriver()
+            );
+        }
+
+        if ($link !== $expectedlink) {
+            throw new ExpectationException(
+                "Menu item $position links to '$link'. Expected link '$expectedlink'.",
+                $this->getSession()->getDriver()
+            );
+        }
+
+        if ($linktarget !== $expectedlinktarget) {
+            throw new ExpectationException(
+                "Menu item $position link targets '$linktarget'. Expected linktarget '$expectedlinktarget'.",
+                $this->getSession()->getDriver()
+            );
+        }
     }
 }

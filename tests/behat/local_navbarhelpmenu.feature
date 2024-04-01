@@ -45,9 +45,9 @@ Feature: Configuring the navbarhelpmenu plugin
     """
     And I press "Save"
     Then I should see the help menu in the navbar
-    And I should see "2" help menu items
-    And I should see a help menu item with title "Moodle" linking to "https://moodle.org" in a new window
-    And I should see a help menu item with title "Site Support" linking to "/user/contactsitesupport.php" in this window
+    And I should see 2 help menu items
+    And I should see help menu item 1 with title "Moodle" linking to "https://moodle.org" in a new window
+    And I should see help menu item 2 with title "Site Support" linking to "/user/contactsitesupport.php" in this window
 
   Scenario: Configuring the help menu with a mix of valid and invalid items
     When I log in as "admin"
@@ -63,6 +63,6 @@ Feature: Configuring the navbarhelpmenu plugin
     """
     And I press "Save"
     Then I should see the help menu in the navbar
-    And I should see "2" help menu items
-    And I should see a help menu item with title "Moodle" linking to "https://moodle.org" in a new window
-    And I should see a help menu item with title "Site Support" linking to "/user/contactsitesupport.php" in this window
+    And I should see 2 help menu items
+    And I should see help menu item 1 with title "Moodle" linking to "https://moodle.org" in a new window
+    And I should see help menu item 2 with title "Site Support" linking to "/user/contactsitesupport.php" in this window
