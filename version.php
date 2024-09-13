@@ -24,8 +24,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_navbarhelpmenu';
-$plugin->version = 2024060500;
-$plugin->release = '4.3';
-$plugin->requires = 2023100400;
-$plugin->supported = [403, 403];
+$plugin->version = 2024091300;
+$plugin->release = '4.4';
+$plugin->requires = 2024041600;
+$plugin->supported = [404, 404];
 $plugin->maturity = MATURITY_STABLE;
