@@ -4,12 +4,12 @@ A plugin that adds a configurable help menu to Moodle's navigation bar.
 
 ## Requirements
 
-This plugin requires Moodle 4.3+
+This plugin requires Moodle 4.4+
 
 ## Installation
 
-* Download/extract or clone https://github.com/ucsf-education/moodle-local_navbarhelpmenu to the `/local` directory in your Moodle installation.
-* Rename the `local_navbarhelpmenu` directory to `navbarhelpmenu`.
+- Download/extract or clone https://github.com/ucsf-education/moodle-local_navbarhelpmenu to the `/local` directory in your Moodle installation.
+- Rename the `local_navbarhelpmenu` directory to `navbarhelpmenu`.
 
 ## Usage & Settings
 
@@ -35,9 +35,9 @@ https://moodle.org|Moodle|true
 
 Further information on the parameters:
 
-* Link: The link target of the men item. It can be defined by a full web URL (e.g. https://moodle.org) or a relative path within your Moodle instance (e.g. /user/contactsitesupport.php).
-* Title: This menu item title.
-* New window (optional): By default, the link will be opened in the same window and the value of this setting is set to false. If you want to open the link in a new window set the value to true.
+- Link: The link target of the men item. It can be defined by a full web URL (e.g. https://moodle.org) or a relative path within your Moodle instance (e.g. /user/contactsitesupport.php).
+- Title: This menu item title.
+- New window (optional): By default, the link will be opened in the same window and the value of this setting is set to false. If you want to open the link in a new window set the value to true.
 
 ## Capabilities
 
@@ -52,12 +52,10 @@ This plugin is developed and tested on Moodle Core's Boost theme as well as UCSF
 The latest version can be found on GitHub:
 https://github.com/ucsf-education/moodle-local_navbarhelpmenu
 
-
 ## Bug and problem reports / Support requests
 
 Please report bugs and problems on GitHub:
 https://github.com/ucsf-education/moodle-local_navbarhelpmenu/issues
-
 
 ## Feature proposals
 
